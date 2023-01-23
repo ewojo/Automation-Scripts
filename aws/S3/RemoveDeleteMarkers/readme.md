@@ -1,0 +1,4 @@
+This is a command used to delete all versions of an object (including delete markers) from an Amazon S3 bucket that match a certain prefix. The command uses the AWS CLI's "s3api" command, specifically the "list-object-versions" and "delete-object" commands. The "--bucket" flag specifies the name of the bucket, "--prefix" flag specifies the prefix of the object versions to be deleted and "--query" flag is used to filter the response and "jq" is used to format the output and finally "xargs -L1" is used to pass the output as arguments to the "delete-object" command.
+
+
+aws s3api list-object-versions --bucket <bucket namne> --prefix <Prefix> --query 'DeleteMarkers[].[Key, VersionId]' | jq -r '.[] | "--key '\''" + .[0] + "'\'' --version-id " + .[1]' |  xargs -L1 aws s3api delete-object --bucket <bucketname>
