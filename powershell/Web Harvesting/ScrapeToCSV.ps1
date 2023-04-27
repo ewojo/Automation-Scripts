@@ -10,4 +10,4 @@ $r.parsedhtml.getelementsbytagname("TR") |
             Select-Object -ExpandProperty innerText | foreach {'"'+$_+'"'} 
 
         )  -join ',' 
-    } | Out-File -Encoding ascii "C:\Users\ewojo\Desktop\users.csv"
+    } | Out-File -Encoding ascii "C:\Users\(User)\Desktop\users.csv"
